@@ -13,8 +13,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float coolDownTime = 2f;
 
     private List<MemoCard> memoCardsBehaviours = new List<MemoCard>();
-    private List<MemoCard> revealedMemoCards = new List<MemoCard>();
     private List<Material> poolMats = new List<Material>();
+    [HideInInspector] public List<MemoCard> revealedMemoCards = new List<MemoCard>();
     [HideInInspector] public List<MemoCard> matchedMemoCards = new List<MemoCard>();
 
     IEnumerator _WaitAndHide(float coolDownTime)

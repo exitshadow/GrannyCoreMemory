@@ -40,7 +40,8 @@ public class MemoCard : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (!manager.matchedMemoCards.Contains(this))
+        if (!manager.matchedMemoCards.Contains(this)
+            && !manager.revealedMemoCards.Contains(this))
         {
             animator.SetBool("isMouseOver", true);
         }
