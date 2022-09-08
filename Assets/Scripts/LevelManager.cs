@@ -10,20 +10,36 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int columns;
     [SerializeField] private float xOffset = 1f;
     [SerializeField] private float yOffset = 1f;
+    [SerializeField] private float coolDownTime = 2f;
 
     private List<MemoCard> memoCardsBehaviours = new List<MemoCard>();
     private List<MemoCard> revealedMemoCards = new List<MemoCard>();
     private List<Material> poolMats = new List<Material>();
+    [HideInInspector] public List<MemoCard> matchedMemoCards = new List<MemoCard>();
+
+    IEnumerator _WaitAndHide(float coolDownTime)
+    {
+        yield return new WaitForSeconds(coolDownTime);
+        for (int i = 0; i < revealedMemoCards.Count; i++)
+        {
+            revealedMemoCards[i].HidePattern();
+        }
+
+        revealedMemoCards.Clear();
+    }
 
     public void RevealCard(MemoCard card)
     {
+        // blocking the procedure if self-clicking
+        if (revealedMemoCards.Contains(card)
+            || matchedMemoCards.Contains(card)
+            || revealedMemoCards.Count == 2)
+            return;
+
         Debug.Log($"{card.name} has been revealed");
         // nb: la propriété name est héritée de MonoBehaviour
 
         card.RevealPattern();
-        
-        // blocking the procedure if self-clicking
-        if (revealedMemoCards.Contains(card)) return;
 
         revealedMemoCards.Add(card);
 
@@ -31,10 +47,16 @@ public class LevelManager : MonoBehaviour
         {
             if (revealedMemoCards[0].hiddenFace == revealedMemoCards[1].hiddenFace)
             {
-                Debug.Log("Matching patterns!");
-            } else Debug.Log("No matching patterns");
-
-            revealedMemoCards.Clear();
+                for (int i = 0; i < revealedMemoCards.Count; i++)
+                {
+                    matchedMemoCards.Add(revealedMemoCards[i]);
+                }
+                revealedMemoCards.Clear();
+            }
+            else
+            {
+                StartCoroutine(_WaitAndHide(coolDownTime));
+            }
         }
     }
 
@@ -46,9 +68,9 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        if ((rows * columns) > randomMats.Length * 2)
+        if ((rows * columns) != randomMats.Length * 2)
         {
-            Debug.LogError("Number of materials available for pooling are insufficient for the quantity of cards generated. Generation cancelled.");
+            Debug.LogError("Number of materials available for pooling doesn’t match the quantity of cards generated. Generation cancelled.");
             return;
         }
 
@@ -64,15 +86,16 @@ public class LevelManager : MonoBehaviour
         {
             for (float y = 0; y < rows * yOffset; y += yOffset)
             {
-                Vector3 position = new Vector3 (x, .1f, y);
-                CreateCard(position);
+                Vector3 position = new Vector3 (x, .2f, y);
+                Vector3 eulerRotation = new Vector3(0, Random.Range(-10, 10), 0);
+                CreateCard(position, eulerRotation);
             }
         }
     }
 
-    private void CreateCard(Vector3 position)
+    private void CreateCard(Vector3 position, Vector3 eulerRotation)
     {
-        GameObject cardInstance = Instantiate(model, position, Quaternion.identity);
+        GameObject cardInstance = Instantiate(model, position, Quaternion.Euler(eulerRotation));
         MemoCard memoCardBehaviour = cardInstance.GetComponent<MemoCard>();
 
         // bind the relationship between the object and the current manager

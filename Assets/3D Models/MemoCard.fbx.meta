@@ -13,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Border
-    second: {fileID: 2100000, guid: ff64c1461fa6efd4da86672f93561fab, type: 2}
+    second: {fileID: 2100000, guid: 379650e0a40d333489870520d65ce603, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Front
-    second: {fileID: 2100000, guid: 44dcf3a51745fb247a406220c54a13e4, type: 2}
+    second: {fileID: 2100000, guid: 379650e0a40d333489870520d65ce603, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

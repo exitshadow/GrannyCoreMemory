@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed0ed26daedc97b4ba61a46015e29835, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.042
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed0ed26daedc97b4ba61a46015e29835, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ed0ed26daedc97b4ba61a46015e29835, type: 3}
       propertyPath: m_Name
-      value: MemoCard Variant
+      value: AnimTestCard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed0ed26daedc97b4ba61a46015e29835, type: 3}
@@ -62,6 +62,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed0ed26daedc97b4ba61a46015e29835, type: 3}
   m_PrefabInstance: {fileID: 5090087347867984355}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &9160524874724398654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360117710379064498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.015955051, z: 2}
+  m_Center: {x: 0, y: -0.007977483, z: 0}
 --- !u!114 &2302418868318023039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,16 +89,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hiddenFace: {fileID: 2100000, guid: 44dcf3a51745fb247a406220c54a13e4, type: 2}
   frontFace: {fileID: 2100000, guid: 379650e0a40d333489870520d65ce603, type: 2}
---- !u!65 &9160524874724398654
-BoxCollider:
+  mats: []
+  manager: {fileID: 0}
+--- !u!95 &7646808931549328929
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5360117710379064498}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.015955051, z: 2}
-  m_Center: {x: 0, y: -0.007977483, z: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ed6b7ebcc9e75846a246d59ec9d80d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
