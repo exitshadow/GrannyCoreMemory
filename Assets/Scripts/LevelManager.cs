@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float xOffset = 1f;
     [SerializeField] private float yOffset = 1f;
     [SerializeField] private float coolDownTime = 2f;
+
+    [Space]
+
+    [SerializeField] private TextMeshProUGUI textTentatives;
+    private int tentatives;
 
     private List<MemoCard> memoCardsBehaviours = new List<MemoCard>();
     private List<Material> poolMats = new List<Material>();
@@ -26,6 +32,8 @@ public class LevelManager : MonoBehaviour
         }
 
         revealedMemoCards.Clear();
+        tentatives++;
+        textTentatives.text = $"Tentatives: {tentatives}";
     }
 
     public void RevealCard(MemoCard card)
