@@ -61,6 +61,7 @@ public class MemoCard : MonoBehaviour
 
     public void HidePattern()
     {
+        animator.SetTrigger("Flip");
         mats[1] = frontFace;
         rend.materials = mats;
     }
